@@ -14,15 +14,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 9.3.1
-      - name: Add Minecraft repositories
-        run: |
-          mkdir -p ~/.gradle/init.d
-          echo "allprojects { repositories { maven { url = 'https://libraries.minecraft.net/' }; maven { url = 'https://maven.fabricmc.net/' } } }" > ~/.gradle/init.d/repos.gradle
-      - run: unzip -o cultivation-mod_v3.zip
+      - run: unzip -o cultivation-mod_v4.zip
       - name: Build
         working-directory: cultivation
         run: |
-          gradle build --no-daemon --console=plain > build.log 2>&1 || { grep -B2 -A15 "What went wrong" build.log; exit 1; }
+          gradle build --no-daemon --console=plain > build.log 2>&1 || { grep -E -A4 "error:|What went wrong" build.log | head -200; exit 1; }
       - uses: actions/upload-artifact@v4
         with:
           name: cultivation-mod
