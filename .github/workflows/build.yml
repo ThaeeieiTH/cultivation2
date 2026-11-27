@@ -14,7 +14,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 9.3.1
-      - run: unzip -o cultivation-mod_v4.zip
+      - run: unzip -o "$(ls -v cultivation-mod_v*.zip | tail -1)"
       - name: Build
         working-directory: cultivation
         run: |
