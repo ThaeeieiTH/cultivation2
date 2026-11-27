@@ -18,7 +18,7 @@ jobs:
         run: |
           mkdir -p ~/.gradle/init.d
           echo "allprojects { repositories { maven { url = 'https://libraries.minecraft.net/' }; maven { url = 'https://maven.fabricmc.net/' } } }" > ~/.gradle/init.d/repos.gradle
-      - run: unzip -o cultivation-mod_v2.zip
+      - run: unzip -o cultivation-mod_v3.zip
       - name: Build
         working-directory: cultivation
         run: |
