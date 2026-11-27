@@ -14,6 +14,10 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 9.3.1
+      - name: Add Minecraft repositories
+        run: |
+          mkdir -p ~/.gradle/init.d
+          echo "allprojects { repositories { maven { url = 'https://libraries.minecraft.net/' }; maven { url = 'https://maven.fabricmc.net/' } } }" > ~/.gradle/init.d/repos.gradle
       - run: unzip -o cultivation-mod_v2.zip
       - name: Build
         working-directory: cultivation
